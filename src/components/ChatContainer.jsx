@@ -1,5 +1,5 @@
 import React, { useEffect, useRef } from 'react'
-import assets, { messagesDummyData } from '../assets/assets'
+import assets, { imagesDummyData, messagesDummyData } from '../assets/assets'
 import { formatMessageTime } from '../lib/util'
 
 const ChatContainer = ({ selectedUser, setSelectedUser }) => {
@@ -12,7 +12,7 @@ const ChatContainer = ({ selectedUser, setSelectedUser }) => {
   }, [])
 
   return selectedUser ? (
-    <div className='hfull overflow-scroll relative backdrop-blur-lg'>
+    <div className='h-full overflow-scroll relative backdrop-blur-lg'>
       {/*--------------------- Header --------------------- */}
       <div className='flex items-center gap-3 py-3 mx-4 border-b border-stone-500'>
         <img src={assets.profile_martin} alt="" className='w-8 rounded-full' />
@@ -29,7 +29,7 @@ const ChatContainer = ({ selectedUser, setSelectedUser }) => {
           <div key={index} className={`flex items-end gap-2 justify-end ${msg.
             senderId !== '680f50e4f10f3cd28382ecf9' && 'flex-row-reverse'}`}>
             {msg.image ? (
-              <img src={assets.image} alt="" className='max-w-[230px] border border-gray-700 rounded-lg 
+              <img src={imagesDummyData[index]} alt="" className='max-w-[230px] border border-gray-700 rounded-lg 
               overflow-hidden mb-8' />
             ) : (
               <p className={`p-2 max-w-[200px] md:text-sm font-light
@@ -48,9 +48,17 @@ const ChatContainer = ({ selectedUser, setSelectedUser }) => {
         ))}
         <div ref={scrollEnd}></div>
       </div>
-      {/*--------------------- bottom area --------------------- 1.15.45 */}
-      <div >
-
+      {/*--------------------- bottom area ---------------------  */}
+      <div className='absolute bottom-0 left-0 right-0 flex items-center gap-3 p-3'>
+        <div className='flex-1 flex items-center bg-gray-100/12 px-3 rounded-full '>
+          <input type="text" name="message" id="" placeholder='Send a message...'
+            className='flex-1 text-sm p-3 border-none rounded-lg outline-none text-white placeholder-gray-400' />
+          <input type="file" id="image" accept='image/png, image/jpeg' hidden />
+          <label htmlFor="image">
+            <img src={assets.gallery_icon} alt="" className='w-5 mr-2 cursor-pointer' />
+          </label>
+        </div>
+        <img src={assets.send_button} alt="" className='w-7 cursor-pointer' />
       </div>
     </div>
   ) : (

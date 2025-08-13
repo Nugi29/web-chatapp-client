@@ -50,6 +50,7 @@ export const AuthProvider = ({ children }) => {
 
         } catch (error) {
             toast.error(error.message);
+            console.log(error);
         }
     };
 
@@ -90,9 +91,6 @@ export const AuthProvider = ({ children }) => {
         newSocket.on("getOnlineUsers", (userIds) => {
             setOnlineUser(userIds);
         });
-
-
-
     }
 
 

@@ -13,7 +13,7 @@ export const AuthProvider = ({ children }) => {
 
     const [token, setToken] = useState(localStorage.getItem("token"));
     const [authUser, setAuthUser] = useState(null);
-    const [onlineUser, setOnlineUser] = useState(null);
+    const [onlineUser, setOnlineUser] = useState([]);
     const [socket, setSocket] = useState(null);
 
     //Check if user is authenticated and if so set the user data  and connect to the socket
